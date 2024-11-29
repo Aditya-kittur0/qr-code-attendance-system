@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+           * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Monaco', monospace;
+            background-color: #212121; /* Dark background */
+            color: #bababa; /* White text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #2220200; /* Add background color to make it stand out */
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin-top:25px;
+            font-size:30px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom:20px;
+            color: #bababa;    
+            font-family:'Monaco',monospace;
+        }   
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 6px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background-color: #3a3a3a; /* Dark input background */
+            color: #bababa; /* White text */
+            font-size: 14px;
+            transition: border-color 0.3s;
+            margin-bottom: 10px;    
+        }
+
+        input[type="text"]:focus, 
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #ffffff; /* yellow border when focused */
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 6px;
+            background-color: #3a3a3a; /* Green button */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ffffff; /* Darker green on hover */
+            color:#000000;
+        }
+
+        .signup-link {
+            margin-top: 15px;
+            color: #aaa;
+        }
+
+        .signup-link a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>QR code Attendance System</h1>
+    </header>
+
+    <h2>Login</h2>
+
+    <form method="POST" id="login-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            {{ form.username }}
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            {{ form.password }}
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Login">
+        </div>
+    </form>
+
+    </div>
+
+</body>
+</html>

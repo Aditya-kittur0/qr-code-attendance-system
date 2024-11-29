@@ -1,0 +1,107 @@
+{% extends 'administration/base.html' %}
+{% block extra_css %}
+<style>
+    body {
+        font-family: 'Monaco', monospace;
+        background-color: #f4f4f4; /* Lighter background */
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        color: #333; /* Dark text color for readability */
+    }
+    main {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+        padding: 20px;
+        background-color: #f4f4f4; /* Lighter background to match the body */
+    }
+    h2 {
+        text-align: center;
+        color: #4CAF50; /* Green for the page title */
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-size: 30px;
+    }
+    .session-list {
+        width: 100%;
+        max-width: 800px; /* Restrict max width */
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #fff; /* White background for list container */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+    }
+    ul.session-items {
+        list-style: none; /* Remove default list styles */
+        padding: 0;
+    }
+
+    ul.session-items li {
+        background-color: #f9f9f9; /* Light background for each session */
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd; /* Light border */
+        text-decoration:none;
+    }
+
+    ul.session-items li h3 {
+        color: #000; /* Green for session title */
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    ul.session-items li p {
+        font-size: 16px;
+        color: #555; /* Dark grey for session description */
+    }
+    hr {
+        border: 0;
+        height: 1px;
+        background: #ddd; /* Light grey line for separation */
+        margin: 20px auto;
+        max-width: 800px;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    .footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main>
+    <h2>Sessions</h2>
+    <div class="session-list">
+        <ul class="session-items">
+            {% for data in session_data %}
+                <li>
+                    <a href="{% url 'attendance_view' session_id=data.session.id %}">
+                    <h3>Session Name: {{ data.session.title }}</h3>
+                    <p>Session ID: {{ data.session.id }}</p>
+                </li>
+            {% empty %}
+                <li>
+                    <p>No sessions available.</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <hr>
+</main>
+<footer class="footer">
+    <p>&copy; 2024 qr-code attendance project. All rights reserved.</p>
+</footer>
+
+
+{% endblock %}

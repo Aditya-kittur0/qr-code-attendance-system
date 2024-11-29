@@ -1,0 +1,134 @@
+{% extends 'administration/base.html' %}
+{% block extra_css %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+    .form-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+    }
+    .form-container h2 {
+        text-align: center;
+        color: #7fd282;
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+    .form-container form p {
+        margin-bottom: 15px;
+    }
+
+    .form-container label {
+        display: block;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 15px;
+    }
+
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+        width:95%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: #f9f9f9;
+    }
+
+    .form-container input:focus,
+    .form-container select:focus,
+    .form-container textarea:focus {
+        outline: none;
+        border-color: #3a3a3a;
+    }
+    .form-container button {
+        width: 100%;
+        background-color: #7fd282;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top:20px;
+        padding:15px 10px;
+    }
+
+    .form-container button:hover {
+        background-color: #333;
+    }
+    .messages-container {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border-radius: 4px;
+        text-align: center;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .messages-container .close {
+        float: right;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .footer {
+        background-color: #171717; /* Dark footer background */
+        color: #ffffff; /* White text */
+        text-align: center;
+        margin-top: auto; /* Pushes footer to the bottom */
+        border-top: 1px solid #333;
+        width: 100%;
+      }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add New Student</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="name">Student Name</label>
+            {{form.name}}
+        </p>
+
+        <p>
+            <label for="roll_number">Roll Number</label>
+            {{form.roll_number}}
+        </p>
+
+        <p>
+            <label for="email">Email</label>
+            {{form.email}}
+        </p>
+        <button type="submit">Add Student</button>
+    </form>
+</div>
+
+{% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+            <span class="close" onclick="this.parentElement.style.display='none'">x</span>
+            {{ message }}
+        {% endfor %}
+    </div>
+    
+{% endif %}
+<footer class="footer">
+    <p>&copy; 2024 QR-code attendance project. All rights reserved.</p>
+  </footer>
+{% endblock %}

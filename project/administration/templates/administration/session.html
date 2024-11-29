@@ -1,0 +1,113 @@
+{% extends 'administration/base.html' %}
+
+{% block extra_css %}
+<style>
+    .form-container {
+        max-width: 500px; /* Restrict form width */
+        margin: 50px auto; /* Center form vertically and horizontally */
+        padding: 20px; /* Add padding inside the container */
+        background-color: #f9f9f9; /* Light grey background */
+        border: 1px solid #ccc; /* Add a subtle border */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        font-family: Arial, sans-serif; /* Clean, modern font */
+    }
+    
+    .form-container h1 {
+        text-align: center; /* Center align the heading */
+        font-size: 1.8em; /* Adjust heading size */
+        color: #333; /* Dark grey color for text */
+        margin-bottom: 20px; /* Space between heading and form */
+    }
+    
+    .form-container div {
+        margin-bottom: 15px; /* Add spacing between inputs */
+    }
+    
+    .form-container label {
+        display: block; /* Ensure labels are on their own line */
+        font-weight: bold; /* Make labels bold */
+        margin-bottom: 5px; /* Add spacing below labels */
+        color: #555; /* Medium grey for labels */
+    }
+    
+    .form-container input[type="text"],
+    .form-container input[type="number"] {
+        width: 100%; /* Make inputs take full width of container */
+        padding: 10px; /* Add padding inside input fields */
+        font-size: 1em; /* Adjust font size */
+        border: 1px solid #ccc; /* Subtle border for inputs */
+        border-radius: 4px; /* Slightly rounded corners */
+        box-sizing: border-box; /* Include padding in width calculation */
+    }
+    
+    .form-container input[type="text"]:focus,
+    .form-container input[type="number"]:focus {
+        border-color: #007bff; /* Blue border on focus */
+        outline: none; /* Remove default browser outline */
+        box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); /* Soft glow on focus */
+    }
+    
+    .form-container button[type="submit"] {
+        width: 100%; /* Full-width button */
+        padding: 10px; /* Padding inside button */
+        font-size: 1em; /* Adjust font size */
+        background-color: #007bff; /* Blue background */
+        color: white; /* White text */
+        border: none; /* Remove border */
+        border-radius: 4px; /* Slightly rounded corners */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s; /* Smooth transition on hover */
+    }
+    
+    .form-container button[type="submit"]:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+    
+    @media (max-width: 768px) {
+        .form-container {
+            padding: 15px; /* Reduce padding on smaller screens */
+        }
+        .form-container h1 {
+            font-size: 1.5em; /* Adjust heading size for smaller screens */
+        }
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Create a New Session Batch</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="session_name">Session_name:</label>
+            <input type="text" id="session_name" name="session_name" required>
+        </div>
+        
+        <div>
+            <label for="num_sessions">Number of Sessions:</label>
+            <input type="number" id="num_sessions" name="num_sessions" required>
+        </div>
+        
+        <div>
+            <label for="duration">Session Duration (in seconds):</label>
+            <input type="number" id="duration" name="duration" required>
+        </div>
+        
+        
+        <div>
+            <button type="submit">Create Sessions</button>
+        </div>
+    </form>
+
+    </form>
+</div>
+
+  <footer class="footer">
+    <p>&copy; 2024 QR-code attendance project. All rights reserved.</p>
+  </footer>
+
+{% endblock %}

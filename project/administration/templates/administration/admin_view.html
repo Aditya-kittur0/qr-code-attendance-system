@@ -1,0 +1,142 @@
+{% extends 'administration/base.html' %}
+{% block extra_css %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background-color: #212121;
+        color: white;
+        text-align: center;
+        padding: 0 20px;
+        flex-direction: column;
+    }
+
+    .hero h2 {
+        font-size: 4rem;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    .how-it-works {
+        background-color: #f9f9f9;
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .how-it-works h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: #004e92;
+    }
+
+    .steps {
+        display: flex;
+        justify-content: space-evenly; /* Even space between steps */
+        margin-top: 40px;
+        text-decoration:none;
+    }
+
+    .step {
+        width: 30%;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin: 0 10px; /* Add space between cards */
+        text-decoration:none;
+    }
+
+    .step:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .step img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    .step h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .step p {
+        font-size: 1rem;
+        color: #666;
+    }
+    @media (max-width: 768px) {
+        .steps {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step {
+            width: 80%; 
+        }
+    }
+
+    @media (max-width: 480px) {
+        .step {
+            width: 100%;
+        }
+    }
+    .footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+{%load static%}
+<main>
+    <section class="hero">
+        <h2>Welcome to the Attendance Management System</h2>
+        <p>Effortlessly manage student attendance and session details with our user-friendly platform.</p>
+    </section>
+
+    <section class="how-it-works">
+        <h2>Manage Sessions and Attendance</h2>
+        <div class="steps">
+            <div class="step" onclick="window.location.href='/session'">
+                <img src="{% static 'code.png' %}" alt="Generate QR">
+                <h3>Generate QR Code</h3>
+                <p>Generate a QR Code by creating a new Session </p>
+            </div>
+            <div class="step" onclick="window.location.href='/view_attendance'">
+                <img src="{% static 'list.png' %}" alt="Scan QR">
+                <h3>View all the Sessions   </h3>
+                <p>List of all the Sessins and attendance of the students for each sessin</p>
+            </div>
+            <div class="step" onclick="window.location.href='/student'">
+                <img src="{% static 'student.jpg' %}" alt="Attendance Recorded">
+                <h3>Student list</h3>
+                <p>List of all the students that are registered </p>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="footer">
+    <p>&copy; 2024 qr-code attendance project. All rights reserved.</p>
+</footer>
+{% endblock %}
